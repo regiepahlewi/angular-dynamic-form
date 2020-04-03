@@ -1,4 +1,4 @@
 <div class="col-sm-12" [formGroup]="group">
-    <button type="submit" [disabled]="!group.valid" mat-raised-button color="primary"
-        [disabled]="field.disabled">{{field.label}}</button>
+    <button [type]="field.type" *ngIf="field.type === 'submit'" [disabled]="disabledBtn()" mat-raised-button color="primary">{{field.label}}</button>
+    <button [type]="field.type" *ngIf="field.type !== 'submit'" [disabled]="disabledBtn()" (click)="callClick()" mat-raised-button color="primary">{{field.label}}</button>
 </div>

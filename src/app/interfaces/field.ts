@@ -6,10 +6,12 @@ export interface IField {
     value?: any;
     disabled?: boolean;
     readOnly?: boolean;
-    validations: IValidator[];
+    validations?: IValidator[];
     minlength?: number;
     maxlength?: number;
     options?: ISelectOptions[];
+    // tslint:disable-next-line: ban-types
+    actions?: Function;
 }
 
 export interface IValidator {

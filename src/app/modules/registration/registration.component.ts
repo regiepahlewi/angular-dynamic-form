@@ -67,14 +67,12 @@ export class RegistrationComponent implements OnInit, IForm {
       {
         name: 'dob',
         component: 'dob',
-        label: 'Date of Birth',
-        validations: []
+        label: 'Date of Birth'
       },
       {
         name: 'gender',
         component: 'radiobutton',
         label: 'Gender',
-        validations: [],
         options: [
           { key: '0', value: 'Male' },
           { key: '1', value: 'Female' }
@@ -94,7 +92,26 @@ export class RegistrationComponent implements OnInit, IForm {
             message: 'Email is mandatory'
           },
         ]
+      }, {
+        name: 'register',
+        component: 'button',
+        label: 'Register',
+        type: 'submit'
+      }, {
+        name: 'login',
+        component: 'button',
+        label: 'Login',
+        type: 'button',
+        actions: this.goToLogin
       }
     ];
+  }
+
+  save(e: Event): void {
+    console.log(e);
+  }
+
+  goToLogin() {
+    console.log('login click');
   }
 }

@@ -9,12 +9,29 @@ import { FormGroup } from '@angular/forms';
 })
 export class ButtonComponent implements OnInit {
 
+  // tslint:disable-next-line: ban-types
+  callClick: Function;
   field: IField;
   group: FormGroup;
 
   constructor() { }
 
   ngOnInit(): void {
+    if (this.field.type !== 'submit') {
+      this.callClick = this.field.actions;
+    }
+  }
+
+  disabledBtn(): boolean {
+    let res = false;
+    if (this.field.type === 'submit') {
+      if (!this.group.valid) {
+        res = true;
+      }
+    } else {
+      res = this.field.disabled;
+    }
+    return res;
   }
 
 }

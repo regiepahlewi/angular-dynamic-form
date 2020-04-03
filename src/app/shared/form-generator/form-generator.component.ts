@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { IField } from 'src/app/interfaces/field';
 import { Validators } from '@angular/forms';
 
@@ -10,6 +10,7 @@ import { Validators } from '@angular/forms';
 export class FormGeneratorComponent implements OnInit {
 
   @Input() fields: IField[];
+  @Output() save = new EventEmitter();
 
   constructor() { }
 
@@ -17,8 +18,8 @@ export class FormGeneratorComponent implements OnInit {
     this.fieldConfigInterceptor();
   }
 
-  saveData(): void {
-
+  saveProcess(e: Event): void {
+    this.save.emit(e);
   }
 
   fieldConfigInterceptor() {
@@ -27,19 +28,23 @@ export class FormGeneratorComponent implements OnInit {
 
         // convert to angular validation
         const validation = data.validations;
-        validation.forEach(val => {
-          if (val.name === 'required') {
-            val.validator = Validators.required;
-          } else if (val.name === 'pattern') {
-            val.validator = Validators.pattern(val.validator);
-          } else if (val.name === 'min' || val.name === 'minlength') {
-            val.name = 'minlength';
-            val.validator = Validators.minLength(val.validator);
-          } else if (val.name === 'max' || val.name === 'maxlength') {
-            val.name = 'maxlength';
-            val.validator = Validators.maxLength(val.validator);
-          }
-        });
+        if (validation) {
+          validation.forEach(val => {
+            if (val.name === 'required') {
+              val.validator = Validators.required;
+            } else if (val.name === 'pattern') {
+              val.validator = Validators.pattern(val.validator);
+            } else if (val.name === 'min' || val.name === 'minlength') {
+              val.name = 'minlength';
+              val.validator = Validators.minLength(val.validator);
+            } else if (val.name === 'max' || val.name === 'maxlength') {
+              val.name = 'maxlength';
+              val.validator = Validators.maxLength(val.validator);
+            }
+          });
+        } else {
+          data.validations = [];
+        }
 
         // give default value for radiobutton
         if (data.component === 'radiobutton') {

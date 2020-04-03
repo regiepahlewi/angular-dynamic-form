@@ -10,7 +10,7 @@ const componentMapper = {
     input: InputComponent,
     button: ButtonComponent,
     dob: DobComponent,
-    radiobutton: RadiobuttonComponent,
+    radiobutton: RadiobuttonComponent
 };
 
 @Directive({

@@ -37,7 +37,7 @@ export class DynamicFormComponent implements OnInit {
   createControl() {
     const group = this.fb.group({});
     this.fields.forEach(field => {
-      if (field.type === 'button') { return; }
+      if (field.component === 'button') { return; }
       const control = this.fb.control({ value: field.value, disabled: field.disabled }, this.bindValidations(field.validations || []));
       group.addControl(field.name, control);
     });
@@ -71,5 +71,4 @@ export class DynamicFormComponent implements OnInit {
       this.validateAllFormFields(this.form);
     }
   }
-
 }
