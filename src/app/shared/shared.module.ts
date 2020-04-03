@@ -18,6 +18,8 @@ import { FormGeneratorComponent } from './form-generator/form-generator.componen
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldsDirective } from './directive/field.directive';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonService } from '../services/common.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { FieldsDirective } from './directive/field.directive';
     MatButtonModule,
     MatSnackBarModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
     MatInputModule,
@@ -49,6 +52,9 @@ import { FieldsDirective } from './directive/field.directive';
     FormsModule,
     ReactiveFormsModule,
     FormGeneratorComponent
+  ],
+  providers : [
+    CommonService
   ]
 })
 export class SharedModule { }
