@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IForm } from 'src/app/interfaces/form';
+import { IForm, IEmitReturn } from 'src/app/interfaces/form';
 import { IField } from 'src/app/interfaces/field';
+import { CommonService } from 'src/app/services/common.service';
+import { WebAddressConstant } from 'src/app/constants/string.constants';
 
 @Component({
   selector: 'app-registration',
@@ -9,8 +11,11 @@ import { IField } from 'src/app/interfaces/field';
 })
 export class RegistrationComponent implements OnInit, IForm {
 
-  constructor() { }
   formProperties: IField[];
+
+  constructor(
+    private commonService: CommonService
+  ) { }
 
   ngOnInit(): void {
     this.formConfig();
@@ -102,13 +107,17 @@ export class RegistrationComponent implements OnInit, IForm {
         component: 'button',
         label: 'Login',
         type: 'button',
+        disabled: true,
         actions: this.goToLogin
       }
     ];
   }
 
-  save(e: Event): void {
-    console.log(e);
+  save(r: IEmitReturn): void {
+    this.commonService.callHttpPost(WebAddressConstant.REGISTRATION_SAVE, r.value).subscribe(data => {
+      console.log(data);
+    });
+    r.fields[r.fields.findIndex(val => val.name === 'login')].disabled = false;
   }
 
   goToLogin() {
