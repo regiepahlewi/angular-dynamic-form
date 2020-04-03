@@ -16,9 +16,18 @@ import { RadiobuttonComponent } from './radiobutton/radiobutton.component';
 import { ButtonComponent } from './button/button.component';
 import { FormGeneratorComponent } from './form-generator/form-generator.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FieldsDirective } from './directive/field.directive';
 
 @NgModule({
-  declarations: [InputComponent, DobComponent, RadiobuttonComponent, ButtonComponent, FormGeneratorComponent, DynamicFormComponent],
+  declarations: [
+    FieldsDirective,
+    InputComponent,
+    DobComponent,
+    RadiobuttonComponent,
+    ButtonComponent,
+    FormGeneratorComponent,
+    DynamicFormComponent],
   imports: [
     CommonModule,
     MatInputModule,
@@ -26,7 +35,9 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     MatRadioModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatInputModule,
@@ -35,6 +46,8 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     MatFormFieldModule,
     MatButtonModule,
     MatSnackBarModule,
+    FormsModule,
+    ReactiveFormsModule,
     FormGeneratorComponent
   ]
 })
