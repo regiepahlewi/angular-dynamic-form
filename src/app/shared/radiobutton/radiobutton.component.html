@@ -1,1 +1,7 @@
-<p>radiobutton works!</p>
+<div class="full-width" [formGroup]="group">
+    <label class="radio-label-padding">{{field.label}}:</label>
+    <mat-radio-group [required]="required" [formControlName]="field.name">
+        <mat-radio-button class="mat-padding-dynamic" *ngFor="let item of field.options" [value]="item.key">
+            {{item.value}}</mat-radio-button>
+    </mat-radio-group>
+</div>

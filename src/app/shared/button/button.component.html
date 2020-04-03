@@ -1,1 +1,4 @@
-<p>button works!</p>
+<div class="col-sm-12" [formGroup]="group">
+    <button type="submit" [disabled]="!group.valid" mat-raised-button color="primary"
+        [disabled]="field.disabled">{{field.label}}</button>
+</div>
