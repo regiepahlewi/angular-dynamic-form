@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { IField } from 'src/app/interfaces/field';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-generator',
@@ -7,9 +9,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormGeneratorComponent implements OnInit {
 
+  @Input() fields: IField[];
+
   constructor() { }
 
   ngOnInit(): void {
+    this.fieldConfigInterceptor();
   }
 
+  saveData(): void {
+
+  }
+
+  fieldConfigInterceptor() {
+    if (this.fields.length > 0) {
+      for (const data of this.fields) {
+
+        // convert to angular validation
+        const validation = data.validations;
+        validation.forEach(val => {
+          if (val.name === 'required') {
+            val.validator = Validators.required;
+          } else if (val.name === 'pattern') {
+            val.validator = Validators.pattern(val.validator);
+          } else if (val.name === 'min' || val.name === 'minlength') {
+            val.name = 'minlength';
+            val.validator = Validators.minLength(val.validator);
+          } else if (val.name === 'max' || val.name === 'maxlength') {
+            val.name = 'maxlength';
+            val.validator = Validators.maxLength(val.validator);
+          }
+        });
+
+        // give default value for radiobutton
+        if (data.component === 'radiobutton') {
+          data.value = data.options[0].key;
+        }
+      }
+    }
+  }
 }

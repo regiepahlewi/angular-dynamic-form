@@ -1,20 +1,24 @@
 export interface IField {
     label?: string;
-    name?: string;
-    options?: any[];
-    type: string;
+    name: string;
+    component: string;
+    type?: string;
     value?: any;
     disabled?: boolean;
     readOnly?: boolean;
-    dataSource?: string;
-    isEditable?: any;
-    validations?: IValidator[];
+    validations: IValidator[];
     minlength?: number;
     maxlength?: number;
+    options?: ISelectOptions[];
 }
 
 export interface IValidator {
     name: string;
     validator: any;
     message: string;
+}
+
+export interface ISelectOptions {
+    key: any;
+    value: string;
 }

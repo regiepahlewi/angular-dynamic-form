@@ -1,6 +1,6 @@
 import { IField } from './field';
 
 export interface IForm {
-    formProperties: IField;
+    formProperties: IField[];
     formConfig(): void;
 }
