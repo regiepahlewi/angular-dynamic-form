@@ -13,7 +13,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routes)
   ]
 })
 export class RegistrationModule { }

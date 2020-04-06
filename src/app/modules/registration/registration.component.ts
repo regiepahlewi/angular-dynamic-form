@@ -5,6 +5,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { StringConstants } from 'src/app/constants/string.constants';
 import { WebAddressConstant } from 'src/app/constants/webaddress.constants';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -19,7 +20,8 @@ export class RegistrationComponent implements OnInit, IForm {
 
   constructor(
     private commonService: CommonService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -113,7 +115,7 @@ export class RegistrationComponent implements OnInit, IForm {
         type: 'email',
         label: 'Email',
         minlength: 0,
-        maxlength: 255,
+        maxlength: 100,
         disabled: disabledField,
         value: (values.email) ? values.email : '',
         validations: [
@@ -128,13 +130,15 @@ export class RegistrationComponent implements OnInit, IForm {
             message: 'Invalid email format'
           }
         ]
-      }, {
+      },
+      {
         name: 'register',
         component: 'button',
         label: 'Register',
         disabled: disabledField,
         type: 'submit'
-      }, {
+      },
+      {
         name: 'login',
         component: 'button',
         label: 'Login',
@@ -158,5 +162,6 @@ export class RegistrationComponent implements OnInit, IForm {
   }
 
   goToLogin() {
+    this.router.navigate(['login']);
   }
 }
