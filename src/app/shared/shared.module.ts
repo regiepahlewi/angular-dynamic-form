@@ -8,6 +8,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
 
 // Component
 import { InputComponent } from './input/input.component';
@@ -38,6 +39,7 @@ import { CommonService } from '../services/common.service';
     MatFormFieldModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatCardModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
@@ -49,6 +51,7 @@ import { CommonService } from '../services/common.service';
     MatFormFieldModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatCardModule,
     FormsModule,
     ReactiveFormsModule,
     FormGeneratorComponent
