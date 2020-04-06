@@ -13,6 +13,7 @@ export class ButtonComponent implements OnInit {
   callClick: Function;
   field: IField;
   group: FormGroup;
+  hidden = false;
 
   constructor() { }
 
@@ -20,6 +21,11 @@ export class ButtonComponent implements OnInit {
     if (this.field.type !== 'submit') {
       this.callClick = this.field.actions;
     }
+
+    this.hidden = (this.field.hidden) ? this.field.hidden : false;
+
+    console.log(this.hidden);
+
   }
 
   disabledBtn(): boolean {
