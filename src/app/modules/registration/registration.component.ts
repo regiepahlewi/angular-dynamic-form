@@ -4,6 +4,7 @@ import { IField } from 'src/app/interfaces/field';
 import { CommonService } from 'src/app/services/common.service';
 import { StringConstants } from 'src/app/constants/string.constants';
 import { WebAddressConstant } from 'src/app/constants/webaddress.constants';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-registration',
@@ -13,16 +14,20 @@ import { WebAddressConstant } from 'src/app/constants/webaddress.constants';
 export class RegistrationComponent implements OnInit, IForm {
 
   formProperties: IField[];
+  disabled = false;
+  values = {};
 
   constructor(
-    private commonService: CommonService
+    private commonService: CommonService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
-    this.formConfig();
+    console.log(this.disabled);
+    this.formConfig(this.disabled, this.values);
   }
 
-  formConfig(): void {
+  formConfig(disabledField: boolean, values: any): void {
     this.formProperties = [
       {
         name: 'mobileNumber',
@@ -31,6 +36,8 @@ export class RegistrationComponent implements OnInit, IForm {
         label: 'Mobile number',
         minlength: 12,
         maxlength: 15,
+        value: (values.mobileNumber) ? values.mobileNumber : '',
+        disabled: disabledField,
         validations: [
           {
             name: 'required',
@@ -40,12 +47,12 @@ export class RegistrationComponent implements OnInit, IForm {
           {
             name: 'pattern',
             validator: StringConstants.REGEX_PHONE_NUMBER_INA,
-            message: 'Invalid mobile Number format'
+            message: 'Invalid mobile number format, please use +62'
           },
           {
             name: 'minlength',
             validator: 12,
-            message: 'Invalid mobile Number, minimal length is 12'
+            message: 'Minimal length is 12 characters'
           }
         ]
       },
@@ -56,6 +63,8 @@ export class RegistrationComponent implements OnInit, IForm {
         label: 'First name',
         minlength: 0,
         maxlength: 255,
+        disabled: disabledField,
+        value: (values.firstName) ? values.firstName : '',
         validations: [
           {
             name: 'required',
@@ -71,6 +80,8 @@ export class RegistrationComponent implements OnInit, IForm {
         label: 'Last name',
         minlength: 0,
         maxlength: 255,
+        disabled: disabledField,
+        value: (values.lastName) ? values.lastName : '',
         validations: [
           {
             name: 'required',
@@ -88,6 +99,8 @@ export class RegistrationComponent implements OnInit, IForm {
         name: 'gender',
         component: 'radiobutton',
         label: 'Gender',
+        disabled: disabledField,
+        value: (values.gender) ? values.gender : 0,
         options: [
           { key: 0, value: 'Male' },
           { key: 1, value: 'Female' }
@@ -100,24 +113,32 @@ export class RegistrationComponent implements OnInit, IForm {
         label: 'Email',
         minlength: 0,
         maxlength: 255,
+        disabled: disabledField,
+        value: (values.email) ? values.email : '',
         validations: [
           {
             name: 'required',
             validator: 'required',
             message: 'Email is mandatory'
+          },
+          {
+            name: 'pattern',
+            validator: StringConstants.REGEX_EMAIL,
+            message: 'Invalid email format'
           }
         ]
       }, {
         name: 'register',
         component: 'button',
         label: 'Register',
+        disabled: disabledField,
         type: 'submit'
       }, {
         name: 'login',
         component: 'button',
         label: 'Login',
         type: 'button',
-        disabled: true,
+        disabled: (disabledField) ? true : false,
         actions: this.goToLogin
       }
     ];
@@ -125,9 +146,14 @@ export class RegistrationComponent implements OnInit, IForm {
 
   save(r: IEmitReturn): void {
     this.commonService.callHttpPost(WebAddressConstant.REGISTRATION_SAVE, r.value).subscribe(data => {
-      console.log(data);
+      this.snackBar.open(StringConstants.REGISRATION_MESSAGE_INSERT_SUCCESS, 'close', { duration: 5000 });
+    }, err => {
+      this.snackBar.open(err.error.data, 'dismiss', { duration: 5000 });
     });
-    r.fields[r.fields.findIndex(val => val.name === 'login')].disabled = false;
+    this.disabled = true;
+    this.values = r.value;
+    this.ngOnInit();
+
   }
 
   goToLogin() {

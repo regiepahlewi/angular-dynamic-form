@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { IField } from 'src/app/interfaces/field';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -17,6 +17,15 @@ export class DynamicFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder
   ) { }
+
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('c');
+    if (typeof changes.fields !== 'undefined' && changes.fields.firstChange !== true) {
+      console.log('d');
+      this.ngOnInit();
+    }
+  }
 
   ngOnInit(): void {
     this.form = this.createControl();

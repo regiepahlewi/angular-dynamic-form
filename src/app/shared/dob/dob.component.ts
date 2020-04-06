@@ -16,7 +16,6 @@ export class DobComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.required = this.field.validations.some(i => i.name === 'required');
   }
 
 }

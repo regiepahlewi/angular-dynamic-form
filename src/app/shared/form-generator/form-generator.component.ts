@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { IField } from 'src/app/interfaces/field';
 import { Validators } from '@angular/forms';
 
@@ -14,6 +14,15 @@ export class FormGeneratorComponent implements OnInit {
 
   constructor() { }
 
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('a');
+    if (typeof changes.fields !== 'undefined' && changes.fields.firstChange !== true) {
+      console.log('b');
+      this.ngOnInit();
+    }
+  }
+
   ngOnInit(): void {
     this.fieldConfigInterceptor();
   }
@@ -23,6 +32,7 @@ export class FormGeneratorComponent implements OnInit {
   }
 
   fieldConfigInterceptor() {
+    console.log(this.fields);
     if (this.fields.length > 0) {
       for (const data of this.fields) {
 
