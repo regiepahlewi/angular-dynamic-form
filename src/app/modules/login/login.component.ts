@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit, IForm {
         name: 'email',
         component: 'input',
         type: 'text',
-        label: 'email',
+        label: 'Email',
         minlength: 0,
-        maxlength: 255,
+        maxlength: 100,
         value: (values.email) ? values.email : '',
         disabled: disabledField,
         validations: [
@@ -41,10 +41,10 @@ export class LoginComponent implements OnInit, IForm {
       {
         name: 'password',
         component: 'input',
-        type: 'text',
+        type: 'password',
         label: 'Password',
         minlength: 0,
-        maxlength: 255,
+        maxlength: 25,
         disabled: disabledField,
         value: (values.password) ? values.password : '',
         validations: [
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit, IForm {
       {
         name: 'login',
         component: 'button',
-        label: 'login',
+        label: 'Login',
         disabled: disabledField,
         type: 'submit'
       }
