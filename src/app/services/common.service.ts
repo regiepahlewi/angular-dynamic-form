@@ -45,7 +45,7 @@ export class CommonService {
         });
       } else {
         day.push({
-          key: i,
+          key: i.toString(),
           value: i.toString()
         });
       }
@@ -62,7 +62,7 @@ export class CommonService {
 
     for (let i = yearInterval; i <= yearNow; i++) {
       year.push({
-        key: i,
+        key: i.toString(),
         value: i.toString()
       });
     }
