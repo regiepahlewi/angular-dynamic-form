@@ -46,7 +46,7 @@ export class RegistrationComponent implements OnInit, IForm {
           {
             name: 'pattern',
             validator: StringConstants.REGEX_PHONE_NUMBER_INA,
-            message: 'Invalid mobile number format, please use +62'
+            message: 'Please enter valid indonesian phone number'
           },
           {
             name: 'minlength',
@@ -149,13 +149,12 @@ export class RegistrationComponent implements OnInit, IForm {
   save(r: IEmitReturn): void {
     this.commonService.callHttpPost(WebAddressConstant.REGISTRATION_SAVE, r.value).subscribe(data => {
       this.snackBar.open(StringConstants.REGISRATION_MESSAGE_INSERT_SUCCESS, 'close', { duration: 5000 });
+      this.disabled = true;
+      this.values = r.value;
+      this.ngOnInit();
     }, err => {
       this.snackBar.open(err.error.data, 'dismiss', { duration: 5000 });
     });
-    this.disabled = true;
-    this.values = r.value;
-    this.ngOnInit();
-
   }
 
   goToLogin() {
