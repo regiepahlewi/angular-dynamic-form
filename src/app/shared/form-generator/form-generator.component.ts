@@ -54,7 +54,7 @@ export class FormGeneratorComponent implements OnInit {
         }
 
         // give default value for radiobutton
-        if (data.component === 'radiobutton') {
+        if (data.component === 'radiobutton' && !data.value) {
           data.value = data.options[0].key;
         }
       }
