@@ -18,7 +18,7 @@ export class FormGeneratorComponent implements OnInit {
     this.fieldConfigInterceptor();
   }
 
-  saveProcess(e: Event): void {
+  saveProcess(e: any): void {
     this.save.emit(e);
   }
 
