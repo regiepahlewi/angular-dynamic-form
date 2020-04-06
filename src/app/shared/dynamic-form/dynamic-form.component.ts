@@ -20,9 +20,7 @@ export class DynamicFormComponent implements OnInit {
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges(changes: SimpleChanges) {
-    console.log('c');
     if (typeof changes.fields !== 'undefined' && changes.fields.firstChange !== true) {
-      console.log('d');
       this.ngOnInit();
     }
   }
