@@ -23,7 +23,6 @@ export class RegistrationComponent implements OnInit, IForm {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.disabled);
     this.formConfig(this.disabled, this.values);
   }
 
@@ -160,6 +159,5 @@ export class RegistrationComponent implements OnInit, IForm {
   }
 
   goToLogin() {
-    console.log('login click');
   }
 }

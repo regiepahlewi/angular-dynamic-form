@@ -23,9 +23,6 @@ export class ButtonComponent implements OnInit {
     }
 
     this.hidden = (this.field.hidden) ? this.field.hidden : false;
-
-    console.log(this.hidden);
-
   }
 
   disabledBtn(): boolean {

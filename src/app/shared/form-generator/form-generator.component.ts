@@ -16,9 +16,7 @@ export class FormGeneratorComponent implements OnInit {
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges(changes: SimpleChanges) {
-    console.log('a');
     if (typeof changes.fields !== 'undefined' && changes.fields.firstChange !== true) {
-      console.log('b');
       this.ngOnInit();
     }
   }
@@ -32,7 +30,6 @@ export class FormGeneratorComponent implements OnInit {
   }
 
   fieldConfigInterceptor() {
-    console.log(this.fields);
     if (this.fields.length > 0) {
       for (const data of this.fields) {
 
