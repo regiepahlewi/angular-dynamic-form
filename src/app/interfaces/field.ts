@@ -1,7 +1,7 @@
 export interface IField {
     label?: string;
     name: string;
-    component: 'input' | 'dob' | 'radiobutton' | 'button';
+    component: string;
     type?: 'text' | 'email' | 'button' | 'submit';
     value?: any;
     disabled?: boolean;
