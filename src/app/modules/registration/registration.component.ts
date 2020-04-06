@@ -93,7 +93,9 @@ export class RegistrationComponent implements OnInit, IForm {
       {
         name: 'dob',
         component: 'dob',
-        label: 'Date of Birth'
+        label: 'Date of Birth',
+        disabled: disabledField,
+        value: (values.dob) ? values.dob : null
       },
       {
         name: 'gender',
@@ -138,7 +140,8 @@ export class RegistrationComponent implements OnInit, IForm {
         component: 'button',
         label: 'Login',
         type: 'button',
-        disabled: (disabledField) ? true : false,
+        hidden: (disabledField) ? false : true,
+        class: 'button-login',
         actions: this.goToLogin
       }
     ];

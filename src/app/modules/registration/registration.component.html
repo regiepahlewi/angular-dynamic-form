@@ -1,1 +1,8 @@
-<app-form-generator [fields]="formProperties" (save)="save($event)"></app-form-generator>
+<mat-card class="example-card">
+    <mat-card-header>
+        <h2>Registration</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <app-form-generator [fields]="formProperties" (save)="save($event)"></app-form-generator>
+    </mat-card-content>
+</mat-card>
