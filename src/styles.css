@@ -9,3 +9,7 @@ body {
 .mat-card-header-text {
   margin: 0px !important;
 }
+.full-width {
+  width: 100%;
+  padding-top: 12px;
+}
