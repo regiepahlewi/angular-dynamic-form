@@ -9,8 +9,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class DynamicFormComponent implements OnInit {
 
-  // tslint:disable-next-line: no-output-native
-  @Output() submit: EventEmitter<any> = new EventEmitter<any>();
+  // tslint:disable-next-line: no-output-on-prefix
+  @Output() onSubmitBtn: EventEmitter<any> = new EventEmitter<any>();
   @Input() fields: IField[] = [];
   form: FormGroup;
 
@@ -56,7 +56,7 @@ export class DynamicFormComponent implements OnInit {
         value: this.form.value,
         fields: this.fields
       };
-      this.submit.emit(value);
+      this.onSubmitBtn.emit(value);
     } else {
       this.validateAllFormFields(this.form);
     }
