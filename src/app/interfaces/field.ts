@@ -2,7 +2,7 @@ export interface IField {
     label?: string;
     name: string;
     component: string;
-    type?: 'text' | 'email' | 'button' | 'submit';
+    type?: 'text' | 'email' | 'button' | 'submit' | 'password';
     value?: any;
     disabled?: boolean;
     readOnly?: boolean;
