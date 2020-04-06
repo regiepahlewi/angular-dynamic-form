@@ -10,6 +10,8 @@ export interface IField {
     minlength?: number;
     maxlength?: number;
     options?: ISelectOptions[];
+    hidden?: boolean;
+    class?: string;
     // tslint:disable-next-line: ban-types
     actions?: Function;
 }
