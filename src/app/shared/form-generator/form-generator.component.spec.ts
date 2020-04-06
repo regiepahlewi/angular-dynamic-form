@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormGeneratorComponent } from './form-generator.component';
 import { RegistrationComponent } from 'src/app/modules/registration/registration.component';
+import { StringConstants } from 'src/app/constants/string.constants';
 
 describe('FormGeneratorComponent', () => {
   let component: FormGeneratorComponent;
@@ -34,17 +35,17 @@ describe('FormGeneratorComponent', () => {
           },
           {
             name: 'minlength',
-            validator: '8',
-            message: 'Minimal input is 8'
+            validator: 12,
+            message: 'Minimal input is 12'
           },
           {
             name: 'maxlength',
-            validator: '15',
+            validator: 15,
             message: 'Maximal input is 15'
           },
           {
             name: 'pattern',
-            validator: '^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$',
+            validator: StringConstants.REGEX_PHONE_NUMBER_INA,
             message: 'Invalid  phone number'
           },
         ]

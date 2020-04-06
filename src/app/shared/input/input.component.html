@@ -1,6 +1,6 @@
 <mat-form-field class="full-width" [formGroup]="group">
     <input [required]="required" matInput [formControlName]="field.name"
-        [placeholder]="field.label" [max]="field.maxlength" [type]="field.type">
+        [placeholder]="field.label" [maxlength]="field.maxlength" [type]="field.type">
     <mat-hint align="end">{{group.get(field.name).value?.toString().length || 0}}/{{field.maxlength}}</mat-hint>
     <ng-container *ngFor="let validation of field.validations;" ngProjectAs="mat-error">
         <mat-error *ngIf="group.get(field.name).hasError(validation.name)">{{validation.message}}</mat-error>

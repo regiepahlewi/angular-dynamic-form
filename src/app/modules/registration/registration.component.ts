@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IForm, IEmitReturn } from 'src/app/interfaces/form';
 import { IField } from 'src/app/interfaces/field';
 import { CommonService } from 'src/app/services/common.service';
-import { WebAddressConstant } from 'src/app/constants/string.constants';
+import { StringConstants } from 'src/app/constants/string.constants';
+import { WebAddressConstant } from 'src/app/constants/webaddress.constants';
 
 @Component({
   selector: 'app-registration',
@@ -28,15 +29,24 @@ export class RegistrationComponent implements OnInit, IForm {
         component: 'input',
         type: 'text',
         label: 'Mobile number',
-        minlength: 0,
-        maxlength: 16,
-        value: '0856',
+        minlength: 12,
+        maxlength: 15,
         validations: [
           {
             name: 'required',
             validator: 'required',
-            message: 'Mobile Number is required'
+            message: 'Mobile number is required'
           },
+          {
+            name: 'pattern',
+            validator: StringConstants.REGEX_PHONE_NUMBER_INA,
+            message: 'Invalid mobile Number format'
+          },
+          {
+            name: 'minlength',
+            validator: 12,
+            message: 'Invalid mobile Number, minimal length is 12'
+          }
         ]
       },
       {
@@ -45,13 +55,13 @@ export class RegistrationComponent implements OnInit, IForm {
         type: 'text',
         label: 'First name',
         minlength: 0,
-        maxlength: 100,
+        maxlength: 255,
         validations: [
           {
             name: 'required',
             validator: 'required',
             message: 'First name is required'
-          },
+          }
         ]
       },
       {
@@ -60,13 +70,13 @@ export class RegistrationComponent implements OnInit, IForm {
         type: 'text',
         label: 'Last name',
         minlength: 0,
-        maxlength: 100,
+        maxlength: 255,
         validations: [
           {
             name: 'required',
             validator: 'required',
             message: 'Last name is mandatory'
-          },
+          }
         ]
       },
       {
@@ -79,8 +89,8 @@ export class RegistrationComponent implements OnInit, IForm {
         component: 'radiobutton',
         label: 'Gender',
         options: [
-          { key: '0', value: 'Male' },
-          { key: '1', value: 'Female' }
+          { key: 0, value: 'Male' },
+          { key: 1, value: 'Female' }
         ]
       },
       {
@@ -95,7 +105,7 @@ export class RegistrationComponent implements OnInit, IForm {
             name: 'required',
             validator: 'required',
             message: 'Email is mandatory'
-          },
+          }
         ]
       }, {
         name: 'register',
