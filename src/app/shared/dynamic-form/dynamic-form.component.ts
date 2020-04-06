@@ -14,18 +14,6 @@ export class DynamicFormComponent implements OnInit {
   @Input() fields: IField[] = [];
   form: FormGroup;
 
-  get value() {
-    return this.form.value;
-  }
-
-  get reset() {
-    return this.form.reset();
-  }
-
-  get getRawValue() {
-    return this.form.getRawValue();
-  }
-
   constructor(
     private fb: FormBuilder
   ) { }
@@ -62,14 +50,12 @@ export class DynamicFormComponent implements OnInit {
     });
   }
 
-  onSubmit(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
+  onSubmit() {
     if (this.form.valid) {
       const value = {
         value: this.form.value,
         fields: this.fields
-      }
+      };
       this.submit.emit(value);
     } else {
       this.validateAllFormFields(this.form);
