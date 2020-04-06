@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IField } from 'src/app/interfaces/field';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-button',
@@ -15,7 +16,9 @@ export class ButtonComponent implements OnInit {
   group: FormGroup;
   hidden = false;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     if (this.field.type !== 'submit') {
