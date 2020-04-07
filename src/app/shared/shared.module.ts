@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 // Material Design Component
 import { MatInputModule } from '@angular/material/input';
@@ -19,7 +20,8 @@ import { FormGeneratorComponent } from './form-generator/form-generator.componen
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldsDirective } from './directive/field.directive';
-import { HttpClientModule } from '@angular/common/http';
+
+// Service
 import { CommonService } from '../services/common.service';
 
 @NgModule({

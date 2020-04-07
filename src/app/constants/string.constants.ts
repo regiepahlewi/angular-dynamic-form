@@ -1,6 +1,6 @@
 
 export class StringConstants {
-
+    // REGISTRATION MESSAGE
     static REGISRATION_MESSAGE_INSERT_SUCCESS = 'Registration successfully !';
 
     // REGEX
