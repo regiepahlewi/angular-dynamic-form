@@ -142,7 +142,7 @@ describe('DynamicFormComponent', () => {
     component.form.controls.email.setValue('regiealgipahlewi@gmail.com');
     component.form.updateValueAndValidity();
 
-    const submitBtn = spyOn(component.submit, 'emit');
+    const submitBtn = spyOn(component.onSubmitBtn, 'emit');
     const value = {
       value: component.form.value,
       fields: component.fields

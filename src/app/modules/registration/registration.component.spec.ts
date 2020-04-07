@@ -3,6 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RegistrationComponent } from './registration.component';
 import { CommonService } from 'src/app/services/common.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Overlay } from '@angular/cdk/overlay';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
@@ -12,10 +15,13 @@ describe('RegistrationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ RegistrationComponent ],
       imports: [
-        HttpClientModule
+        HttpClientModule,
+        RouterTestingModule
       ],
       providers: [
-        CommonService
+        CommonService,
+        MatSnackBar,
+        Overlay
       ]
     })
     .compileComponents();
